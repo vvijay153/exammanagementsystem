@@ -5,6 +5,7 @@
  */
 package com.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -13,17 +14,31 @@ import javax.inject.Named;
 @Named
 public class Lecturer {
 
-    private List<Modules> modulesTaught;
+    private List<String> selectedModules;
     private String lecturerId;
     private String lecturerName;
+    private String username;
+    private String password;
 
-    public List<Modules> getModulesTaught() {
-        return modulesTaught;
+   /* public List<String> getSelectedModules() {
+        
+        List <String> modulesList = new ArrayList<>();
+        modulesList.add(("oodp"));
+        modulesList.add(("Jave"));
+        modulesList.add(("EI"));
+        return modulesList;
     }
 
-    public void setModulesTaught(List<Modules> modulesTaught) {
-        this.modulesTaught = modulesTaught;
-    }
+    */
+    
+
+    /*public List<Modules> getModulesList() {
+        List <Modules> modulesList = new ArrayList<>();
+        modulesList.add(new Modules("oodp"));
+        modulesList.add(new Modules("Jave"));
+        modulesList.add(new Modules("EI"));
+        return modulesList;
+    } */
 
     public String getLecturerId() {
         return lecturerId;
@@ -41,4 +56,35 @@ public class Lecturer {
         this.lecturerName = lecturerName;
     }
 
+    public List<String> getSelectedModules() {
+        return selectedModules;
+    }
+
+    public void setSelectedModules(List<String> selectedModules) {
+        this.selectedModules = selectedModules;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    
+    @Override
+    public String toString() {
+        return "Lecturer{" + "selectedModules=" + selectedModules + ", lecturerId=" + lecturerId + ", lecturerName=" + lecturerName + '}';
+    }
+    
+    
 }

@@ -6,12 +6,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Lecturer Information</title>
-        <h:outputStylesheet library="theme" name="primefaces-bootstrap/theme.css" />
+        <h:outputStylesheet library="bootstrap" name="primefaces-bootstrap/theme.css" />
     </h:head>
     <h:body> 
 
         <h:form>
-            <p:growl id="messages"/>
+
             <p:menubar>
                 <p:menuitem value="Home" url="#" icon="ui-icon-home" />
                 <p:menuitem value="Lecturer" url="#" icon="ui-icon-person" />
@@ -29,20 +29,17 @@
                     <p:inputText value="#{lecturer.lecturerName}" placeholder="Enter Name"/>
                     <p:outputLabel value="Id :" />
                     <p:inputText value="#{lecturer.lecturerId}" placeholder="Enter ID"/>
-                    <p:outputLabel for="modules" value="Modules Taught:" />
-                    <p:selectManyMenu id="modules" value="#{lecturer.modulesTaught}">
-                        <f:selectItem itemLabel="Java" itemValue="1" />
-                        <f:selectItem itemLabel="OODP" itemValue="2" />
-                        <f:selectItem itemLabel="EI" itemValue="3" />
-                        <f:selectItem itemLabel="SI" itemValue="4" />
-                        <f:selectItem itemLabel="RSH" itemValue="4" />
-                    </p:selectManyMenu>
+                    <p:outputLabel value="User Name:"/>
+                    <p:inputText value="#{lecturer.username}" placeholder="Enter UserName"/>
+                    <p:outputLabel value="Password :" />
+                    <p:inputText value="#{lecturer.password}" placeholder="Enter Password"/>
+                    <p:outputLabel value="Modules Taught:" />
                 </p:panelGrid>
+                <p:commandButton value="Register" action="lecturerinfo" ajax="false"/>  
             </p:fieldset>
-            <p:commandButton value="Register" action="succ" styleClass="btn-danger"/>
-
-
         </h:form>
+        <h:outputText value="#{lecturer.lecturerName}"/>
+        <h:outputText value="#{lecturer.lecturerId}"/>
     </h:body>
 </html>
 
