@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Lecturer Information</title>
+        <h:outputStylesheet library="theme" name="primefaces-bootstrap/theme.css" />
+    </h:head>
+    <h:body> 
+
+        <h:form>
+            <p:growl id="messages"/>
+            <p:menubar>
+                <p:menuitem value="Home" url="#" icon="ui-icon-home" />
+                <p:menuitem value="Lecturer" url="#" icon="ui-icon-person" />
+                <p:menuitem value="Student" url="#" icon="ui-icon-note" />
+                <p:menuitem value="Examination" url="#" icon="ui-icon-clipboard" />
+                <f:facet name="options">
+                    <p:inputText style="margin-right:10px" placeholder="Search"/>
+                    <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                </f:facet>
+            </p:menubar>
+            <br/>
+            <p:fieldset legend="Lecturer Details">
+                <p:panelGrid columns="2" style="">
+                    <p:outputLabel value="Name :"/>
+                    <p:inputText value="#{lecturer.lecturerName}" placeholder="Enter Name"/>
+                    <p:outputLabel value="Id :" />
+                    <p:inputText value="#{lecturer.lecturerId}" placeholder="Enter ID"/>
+                    <p:outputLabel for="modules" value="Modules Taught:" />
+                    <p:selectManyMenu id="modules" value="#{lecturer.modulesTaught}">
+                        <f:selectItem itemLabel="Java" itemValue="1" />
+                        <f:selectItem itemLabel="OODP" itemValue="2" />
+                        <f:selectItem itemLabel="EI" itemValue="3" />
+                        <f:selectItem itemLabel="SI" itemValue="4" />
+                        <f:selectItem itemLabel="RSH" itemValue="4" />
+                    </p:selectManyMenu>
+                </p:panelGrid>
+            </p:fieldset>
+            <p:commandButton value="Register" action="succ" styleClass="btn-danger"/>
+
+
+        </h:form>
+    </h:body>
+</html>
+
