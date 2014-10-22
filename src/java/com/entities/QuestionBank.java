@@ -5,17 +5,12 @@
  */
 package com.entities;
 
-import java.sql.Date;
 import java.util.List;
 
 /**
  *
  * @author gautamverma
  */
-public class ExamPaper {
-   private int examPaperId;
-   private Date createdDate;
-   private Date examDate;
-   private int moduleCode;
-   private List<Section>sections;
+public class QuestionBank {
+    List<Question>questions;
 }

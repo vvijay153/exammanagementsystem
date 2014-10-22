@@ -17,7 +17,8 @@ import javax.inject.Named;
 public class Modules {
     private int moduleId;
     private String moduleName;
-    private List<SubjectTags> subjectTags;
+    //private List<SubjectTags> subjectTags;
+    private QuestionBank questionBank;
 
  
     Modules(String moduleName) {
@@ -25,7 +26,7 @@ public class Modules {
     }
 
     public int getModuleId() {
-        return moduleId;
+        return moduleId; 
     }
 
     public void setModuleId(int moduleId) {
@@ -40,13 +41,6 @@ public class Modules {
         this.moduleName = moduleName;
     }
 
-    public List<SubjectTags> getSubjectTags() {
-        return subjectTags;
-    }
-
-    public void setSubjectTags(List<SubjectTags> subjectTags) {
-        this.subjectTags = subjectTags;
-    }
-    
+   
     
 }

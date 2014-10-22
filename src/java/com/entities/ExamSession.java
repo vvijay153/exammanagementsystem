@@ -14,10 +14,11 @@ import java.sql.Time;
  */
 public class ExamSession {
     private int sessionId;
-    private int examId;
+    private int examPaperId;
     private Date date;
     private Time startTime;
     private double duration;
     private int courseCode;
     private String location;
+    private Student student;
 }
