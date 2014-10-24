@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 /**
  *
@@ -26,4 +27,7 @@ public class Question {
            private Lecturer createdBy;
            private int mark;
            private String questionText;
+           @Transient
+           private int completed;
+                   
 }

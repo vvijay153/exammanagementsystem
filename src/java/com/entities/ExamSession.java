@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.sql.Time;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 /**
  *
@@ -27,5 +28,8 @@ public class ExamSession {
     private String location;
     private Student student;
     private Admin invigilator;
+    private ExamPaper examPaper;
+    @Transient
+    private boolean currentRunningStatus;
     
 }
