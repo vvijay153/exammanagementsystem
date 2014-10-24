@@ -8,8 +8,11 @@ package com.entities;
 import java.sql.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
 
 /**
@@ -18,6 +21,9 @@ import javax.persistence.Transient;
  */
 @Entity
 public class Question {
+    @TableGenerator(name="QUESTION", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME",
+        valueColumnName="SEQ_COUNT", pkColumnValue="QUESTION_SEQ")
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="QUESTION")
     @Id
     private int questionId;
     @OneToMany

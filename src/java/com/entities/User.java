@@ -6,7 +6,10 @@
 package com.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.TableGenerator;
 
 /**
  *
@@ -14,6 +17,9 @@ import javax.persistence.Id;
  */
 @Entity
 public class User {
+    @TableGenerator(name="TABLE_GEN", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME",
+        valueColumnName="SEQ_COUNT", pkColumnValue="USER_SEQ")
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="TABLE_GEN")
     @Id
     private int id;
     private String name;

@@ -7,7 +7,10 @@ package com.entities;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.TableGenerator;
 
 /**
  *
@@ -15,7 +18,9 @@ import javax.persistence.Id;
  */
 @Entity
 public class Section {
-    
+    @TableGenerator(name="SECTION", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME",
+        valueColumnName="SEQ_COUNT", pkColumnValue="SECTION_SEQ")
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="SECTION")
     @Id
     private int sectionId;
     private String name;

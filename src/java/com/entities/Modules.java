@@ -9,6 +9,8 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -20,6 +22,9 @@ import javax.persistence.TableGenerator;
  */
 @Entity
 public class Modules {
+    @TableGenerator(name="MODULES", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME",
+        valueColumnName="SEQ_COUNT", pkColumnValue="MODULES_SEQ")
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="MODULES")
     @Id
     private int moduleId;
     private String moduleName;

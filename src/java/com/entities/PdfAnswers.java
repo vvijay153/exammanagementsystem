@@ -8,7 +8,10 @@ package com.entities;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.TableGenerator;
 
 /**
  *
@@ -16,6 +19,9 @@ import javax.persistence.Id;
  */
 @Entity
 public class PdfAnswers {
+    @TableGenerator(name="PDFANSWERS", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME",
+        valueColumnName="SEQ_COUNT", pkColumnValue="PDFANSWERS_SEQ")
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="PDFANSWERS")
     @Id
     private Student studentId;
     private Map<Question,String> questionAndAnswer;
