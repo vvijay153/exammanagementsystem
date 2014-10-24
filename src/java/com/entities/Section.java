@@ -27,5 +27,6 @@ public class Section {
     private int totMarks;
     private String sectionType;
     List<Question> questions;
+    private int sectionMarks;
     
 }
