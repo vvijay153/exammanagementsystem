@@ -6,11 +6,13 @@
 package com.entities;
 
 import java.util.List;
+import javax.persistence.Entity;
 
 /**
  *
  * @author gautamverma
  */
+@Entity
 public class MultiPart extends Question{
     
     private List<WrittenQuestion> writtenAnswers;

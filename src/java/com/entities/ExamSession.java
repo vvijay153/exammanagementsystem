@@ -7,12 +7,17 @@ package com.entities;
 
 import java.sql.Date;
 import java.sql.Time;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author gautamverma
  */
+@Entity
 public class ExamSession {
+    
+    @Id
     private int sessionId;
     private int examPaperId;
     private Date date;
@@ -21,4 +26,6 @@ public class ExamSession {
     private int courseCode;
     private String location;
     private Student student;
+    private Admin invigilator;
+    
 }

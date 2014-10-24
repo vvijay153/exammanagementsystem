@@ -7,11 +7,13 @@ package com.entities;
 
 import java.util.List;
 import java.util.Map;
+import javax.persistence.Entity;
 
 /**
  *
  * @author gautamverma
  */
+@Entity
 public class MultipleChoiceQuestion extends Question{
     
     private List<String>options;

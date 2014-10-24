@@ -5,11 +5,16 @@
  */
 package com.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author gautamverma
  */
+@Entity
 public class SubjectTags {
+    @Id
     private int subjectTagId;
     private String subjectTagname;
     

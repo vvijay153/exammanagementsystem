@@ -5,14 +5,22 @@
  */
 package com.entities;
 
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author gautamverma
  */
+@Entity
 public class Section {
     
+    @Id
+    private int sectionId;
     private String name;
     private int totMarks;
-    private SectionType sectionType;
+    private String sectionType;
+    List<Question> questions;
     
 }

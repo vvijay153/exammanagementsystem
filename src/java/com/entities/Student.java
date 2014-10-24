@@ -6,13 +6,15 @@
 package com.entities;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author gautamverma
  */
+@Entity
 public class Student extends User {
-    
     private List<Modules> modulesEnrolled;
     
 }

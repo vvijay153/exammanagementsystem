@@ -6,11 +6,19 @@
 package com.entities;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author gautamverma
  */
+@Entity
 public class QuestionBank {
+    @Id
+    private int questionBankId;
+    
+    @OneToMany        
     List<Question>questions;
 }

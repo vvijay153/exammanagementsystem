@@ -7,15 +7,21 @@ package com.entities;
 
 import java.sql.Date;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author gautamverma
  */
+@Entity
 public class ExamPaper {
+    @Id
    private int examPaperId;
    private Date createdDate;
    private Date examDate;
    private int moduleCode;
+   @OneToMany
    private List<Section>sections;
 }

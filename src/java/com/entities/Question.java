@@ -7,13 +7,19 @@ package com.entities;
 
 import java.sql.Date;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author gautamverma
  */
+@Entity
 public class Question {
+    @Id
     private int questionId;
+    @OneToMany
     private List<SubjectTags> subjectTags;
            private int versionNumber;
            private Date createdDate;

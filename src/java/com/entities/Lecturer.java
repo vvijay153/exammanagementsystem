@@ -9,16 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
+@Entity
 @RequestScoped
 @Named
-public class Lecturer {
+public class Lecturer extends User{
 
-    private List<String> selectedModules;
-    private String lecturerId;
-    private String lecturerName;
-    private String username;
-    private String password;
+    @OneToMany
+    private List<Modules> selectedModules;
+    
 
    /* public List<String> getSelectedModules() {
         
@@ -40,51 +41,15 @@ public class Lecturer {
         return modulesList;
     } */
 
-    public String getLecturerId() {
-        return lecturerId;
-    }
-
-    public void setLecturerId(String lecturerId) {
-        this.lecturerId = lecturerId;
-    }
-
-    public String getLecturerName() {
-        return lecturerName;
-    }
-
-    public void setLecturerName(String lecturerName) {
-        this.lecturerName = lecturerName;
-    }
-
-    public List<String> getSelectedModules() {
+    
+    public List<Modules> getSelectedModules() {
         return selectedModules;
     }
 
-    public void setSelectedModules(List<String> selectedModules) {
+    public void setSelectedModules(List<Modules> selectedModules) {
         this.selectedModules = selectedModules;
     }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    
-    @Override
-    public String toString() {
-        return "Lecturer{" + "selectedModules=" + selectedModules + ", lecturerId=" + lecturerId + ", lecturerName=" + lecturerName + '}';
-    }
+   
     
     
 }

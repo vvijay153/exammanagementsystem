@@ -5,10 +5,13 @@
  */
 package com.entities;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author gautamverma
  */
-public class SectionType {
+@Entity
+public class Admin extends User{
     
 }

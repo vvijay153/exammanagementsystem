@@ -5,10 +5,13 @@
  */
 package com.entities;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author gautamverma
  */
+@Entity
 public class WrittenQuestion extends Question{
     
     private String answerText;
