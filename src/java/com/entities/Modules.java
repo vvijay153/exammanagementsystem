@@ -5,7 +5,10 @@
  */
 package com.entities;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.Entity;
@@ -15,13 +18,16 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.TableGenerator;
+import javax.persistence.Transient;
 
 /**
  *
  * @author gautamverma
  */
 @Entity
-public class Modules {
+@Named
+@RequestScoped
+public class Modules implements Serializable{
     @TableGenerator(name="MODULES", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME",
         valueColumnName="SEQ_COUNT", pkColumnValue="MODULES_SEQ")
     @GeneratedValue(strategy=GenerationType.TABLE, generator="MODULES")
@@ -31,25 +37,42 @@ public class Modules {
     //private List<SubjectTags> subjectTags;
     @OneToOne
     private QuestionBank questionBank;
-    
-    
+  
+    @Transient
+    private List<Modules>allModules;
+
+    public List<Modules> getAllModules() {
+        return allModules;
+    }
+
+    public void setAllModules(List<Modules> allModules) {
+        this.allModules = allModules;
+    }
 
     public Modules() {
     }
 
-    
-    
     Modules(String moduleName) {
         this.moduleName = moduleName;
     }
 
     public int getModuleId() {
-        return moduleId; 
+        return moduleId;
     }
 
     public void setModuleId(int moduleId) {
         this.moduleId = moduleId;
     }
+
+    public QuestionBank getQuestionBank() {
+        return questionBank;
+    }
+
+    public void setQuestionBank(QuestionBank questionBank) {
+        this.questionBank = questionBank;
+    }
+
+    
 
     public String getModuleName() {
         return moduleName;
@@ -59,6 +82,18 @@ public class Modules {
         this.moduleName = moduleName;
     }
 
-   
+   @PostConstruct
+    public void moduleTest(){
+        System.out.println(">>>>>>>>post");
+        allModules=new ArrayList<Modules>();
+        Modules m=new  Modules();
+        m.moduleId=1;
+        m.moduleName="testmodule";
+        m.questionBank=null;
+        allModules.add(m);
+        System.out.println("M:"+m);
+        
+    }
+    
     
 }

@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
+import javax.persistence.Version;
 
 /**
  *
@@ -28,6 +29,7 @@ public class Question {
     private int questionId;
     @OneToMany
     private List<SubjectTags> subjectTags;
+    @Version
            private int versionNumber;
            private Date createdDate;
            private Lecturer createdBy;

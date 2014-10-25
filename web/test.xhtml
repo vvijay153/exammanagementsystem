@@ -25,6 +25,12 @@ and open the template in the editor.
             <h:form id="myFormdiv" >
             <h:commandLink value="asd" action="null" rendered="#{viewTest.ret}"></h:commandLink>
             <h:commandLink value="new" action="null" rendered="#{not viewTest.ret}"></h:commandLink>
+            
+            
+            <p:selectOneMenu>
+                <f:selectItems value="#{viewTest.me}"></f:selectItems>
+            </p:selectOneMenu>
+            
         </h:form>
         </h:panelGroup>
         
