@@ -7,45 +7,39 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
-                <h:outputStylesheet name="./css/default.css"/>
+<!--        <h:outputStylesheet library="css" name="default.css"/>-->
+<h:outputStylesheet name="./css/default.css"/>
+<!--<link href="../default.css"></link>-->
 
     </h:head>
     <h:body>
         <ui:composition template="/WEB-INF/templates/newTemplate.xhtml">
-            
+
             <ui:define name="left">
                 User Info Not available
             </ui:define>
             <ui:define name="right">
                 No active Session
             </ui:define>
-                        <ui:define name="content">
+            <ui:define name="content">
 
-        <h:form>
-            <div align="center">
-            <p:fieldset legend="Login" style="margin: 450px;margin-top:300px ;margin-left: 400px;alignment-adjust: central;text-align: center;padding:1em;margin-right:950px;" >    
-                <p:panelGrid columns="2" style="text-align: center;width: 400px" >
-
-
-                    User Id: <p:inputText value=""></p:inputText>
-                    Password <p:inputText value=""></p:inputText>
-                    <p:column style="width: 250px">
-                        Login Type:
-                        </p:column>
-                    <p:column width="200px">
-                    <p:selectOneMenu id="LoginType">
-                        <f:selectItem itemLabel="Admin" itemValue="Admin"></f:selectItem>
-                        <f:selectItem itemLabel="Student" itemValue="Student"></f:selectItem>
-                        <f:selectItem itemLabel="Lecturer" itemValue="Lecturer"></f:selectItem>
-                    </p:selectOneMenu>
-                    </p:column>
-                    <span></span><p:commandButton value="Login"></p:commandButton>
+                <h:form>
+                    <div align="center">
+                        <p:fieldset legend="Login" style="margin: 450px;margin-top:300px ;margin-left: 400px;alignment-adjust: central;text-align: center;padding:1em;margin-right:950px;" >    
+                            <p:panelGrid columns="2" style="text-align: center;width: 400px" >
 
 
-                </p:panelGrid>
-            </p:fieldset>
-                </div>
-        </h:form>
+                                User Id: <p:inputText value="#{userSessionBean.userName}"></p:inputText>
+                                Password <p:inputText value="#{userSessionBean.password}"></p:inputText>
+                                
+                                <p:column colspan="2">
+                                    <span></span><p:commandButton value="Login" action="#{userSessionBean.authenticate()}"></p:commandButton>
+                                </p:column>
+
+                            </p:panelGrid>
+                        </p:fieldset>
+                    </div>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>
