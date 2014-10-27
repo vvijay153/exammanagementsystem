@@ -34,7 +34,7 @@ public class viewTest {
 
     public List<String> getMe() {
         System.out.println(">>>>>in here");
-        timerTest.inpost();
+       // timerTest.inpost();
         me = new ArrayList<String>();
         me.add("d");
         me.add("f");

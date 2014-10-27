@@ -5,6 +5,7 @@
  */
 package com.test;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,7 +14,7 @@ import javax.persistence.Id;
  * @author gautamverma
  */
 @Entity
-public class TestCl {
+public class TestCl implements Serializable{
     @Id
     private int id;
 
@@ -32,5 +33,21 @@ public class TestCl {
     public void setName(String name) {
         this.name = name;
     }
+
+    public TestCl() {
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    
     private String name;
 }
