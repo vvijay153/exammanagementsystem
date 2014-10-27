@@ -16,7 +16,7 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <p:dataTable var="module" value="#{modules.allModules}">
+            <p:dataTable id="dataTable"  var="module" value="#{modules.allModules}" paginator="true" rows="10">
                 <p:column headerText="Module Name">
                     <h:outputText value="#{module.moduleName}" />
                 </p:column>

@@ -34,7 +34,7 @@
                             <p:row>
                                 <p:column >Module</p:column>
                                 <p:column ><h:inputText value="#{modules.moduleId}"></h:inputText>   
-                                    <p:commandButton value="Select Car" icon="ui-icon-extlink" actionListener="#{selectModuleView.selectAllModuels(modules)}">
+                                    <p:commandButton value="Select Module" icon="ui-icon-extlink" actionListener="#{selectModuleView.selectAllModuels(modules)}">
                                         <p:ajax event="dialogReturn" listener="#{selectModuleView.onModuleChosen(event)}"  update="growl" />
                                     </p:commandButton>
                                 </p:column>
