@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
@@ -27,18 +29,32 @@ import javax.persistence.Transient;
  */
 @Entity
 @Named
-@RequestScoped
+@SessionScoped
 public class Modules implements Serializable{
     @TableGenerator(name="MODULES", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME",
-        valueColumnName="SEQ_COUNT", pkColumnValue="MODULES_SEQ")
+        valueColumnName="SEQ_COUNT", pkColumnValue="MODULES_SEQ",allocationSize = 1)
     @GeneratedValue(strategy=GenerationType.TABLE, generator="MODULES")
     @Id
     private int moduleId;
     private String moduleName;
     //private List<SubjectTags> subjectTags;
-    @OneToOne
+    @OneToOne(mappedBy = "module")
     private QuestionBank questionBank;
   
+    @OneToMany
+    private List<ExamPaper> examPaper;
+    
+    
+
+    public List<ExamPaper> getExamPaper() {
+        return examPaper;
+    }
+
+    public void setExamPaper(List<ExamPaper> examPaper) {
+        this.examPaper = examPaper;
+    }
+    
+    
     @Transient
     private List<Modules>allModules;
 
@@ -85,14 +101,7 @@ public class Modules implements Serializable{
 
    @PostConstruct
     public void moduleTest(){
-        System.out.println(">>>>>>>>post");
-        allModules=new ArrayList<Modules>();
-        Modules m=new  Modules();
-        m.moduleId=1;
-        m.moduleName="testmodule";
-        m.questionBank=null;
-        allModules.add(m);
-        System.out.println("M:"+m);
+
         
     }
     

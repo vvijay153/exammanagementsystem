@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
 
 /**
@@ -18,10 +19,13 @@ import javax.persistence.TableGenerator;
 @Entity
 public class SubjectTags {
     @TableGenerator(name="SUBJECT_TAGS", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME",
-        valueColumnName="SEQ_COUNT", pkColumnValue="SUBJECT_TAGS_SEQ")
+        valueColumnName="SEQ_COUNT", pkColumnValue="SUBJECT_TAGS_SEQ",allocationSize = 1)
     @GeneratedValue(strategy=GenerationType.TABLE, generator="SUBJECT_TAGS")
     @Id
     private int subjectTagId;
     private String subjectTagname;
+    
+    @ManyToOne
+    private Question question;
     
 }

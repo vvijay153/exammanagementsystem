@@ -20,24 +20,24 @@ import javax.ejb.TimerService;
  */
 @Stateless
 public class TimerTest {
-    @Resource TimerService timer;
-    
-    
-    public void inpost()
-    {
-        System.out.println("in post");
-      timer.createTimer(Calendar.getInstance().getTime(), "new timer");
-      for(Timer t:timer.getAllTimers())
-      {
-          System.out.println(t.getInfo()+" "+System.currentTimeMillis()+" "+Calendar.getInstance().getTime());
-      }
-    }
-    
-    @Timeout
-    public void inTimeout(Timer timer)
-    {
-        System.out.println("in time out");
-    }
+//    @Resource TimerService timer;
+//    
+//    
+//    public void inpost()
+//    {
+//        System.out.println("in post");
+//      timer.createTimer(Calendar.getInstance().getTime(), "new timer");
+//      for(Timer t:timer.getAllTimers())
+//      {
+//          System.out.println(t.getInfo()+" "+System.currentTimeMillis()+" "+Calendar.getInstance().getTime());
+//      }
+//    }
+//    
+//    @Timeout
+//    public void inTimeout(Timer timer)
+//    {
+//        System.out.println("in time out");
+//    }
     
    
     

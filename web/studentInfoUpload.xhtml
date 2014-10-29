@@ -12,11 +12,11 @@
             <p:fieldset>
                 <p:outputLabel value="Name"/>
                 <p:inputText value="#{studentUploadView.student.name}" placeholder="Enter Name"/>
-                <p:outputLabel value="Student ID"/>
-<!--                <p:inputText value="" placeholder="Enter Student Id"/>-->
                 <p:outputLabel value="Modules Enrolled"/>
-                <p:selectCheckboxMenu value="#{studentUploadView.student.modulesEnrolled}" label="ModulesEnrolled"/>
-                <f:selectItems value="#{modules.moduleName}"/>
+<!--                <p:selectCheckboxMenu value="#{studentUploadView.student.modulesEnrolled}" label="ModulesEnrolled"/>-->
+                <h:selectOneMenu>
+                    <f:selectItems value="#{studentUploadView.findAllModules()}" var="module" itemLabel="#{module.moduleName}"/>
+                </h:selectOneMenu>
             </p:fieldset>
             <p:commandButton value="Register" action="#{studentUploadView.registerStudent()}" ajax="false"/>
         </h:form>

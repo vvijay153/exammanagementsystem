@@ -20,7 +20,7 @@ import javax.persistence.TableGenerator;
 @Entity
 public class PdfAnswers {
     @TableGenerator(name="PDFANSWERS", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME",
-        valueColumnName="SEQ_COUNT", pkColumnValue="PDFANSWERS_SEQ")
+        valueColumnName="SEQ_COUNT", pkColumnValue="PDFANSWERS_SEQ",allocationSize = 1)
     @GeneratedValue(strategy=GenerationType.TABLE, generator="PDFANSWERS")
     @Id
     private Student studentId;

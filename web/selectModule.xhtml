@@ -16,12 +16,12 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <p:dataTable id="dataTable"  var="module" value="#{modules.allModules}" paginator="true" rows="10">
+            <p:dataTable id="dataTable"  var="selectedModule" value="#{createExamPaperView.allModules}" paginator="true" rows="10">
                 <p:column headerText="Module Name">
-                    <h:outputText value="#{module.moduleName}" />
+                    <h:outputText value="#{selectedModule.moduleName}" />
                 </p:column>
                 <p:column>
-                    <p:commandButton icon="ui-icon-search" actionListener="#{selectModuleView.onselectedModule(module)}" />
+                    <p:commandButton icon="ui-icon-search" actionListener="#{createExamPaperView.onselectedModule(selectedModule)}" />
                 </p:column>
             </p:dataTable>
         </h:form>

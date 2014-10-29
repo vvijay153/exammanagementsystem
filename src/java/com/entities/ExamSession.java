@@ -22,7 +22,7 @@ import javax.persistence.Transient;
 public class ExamSession {
     
     @TableGenerator(name="EXAMP_SESSION", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME",
-        valueColumnName="SEQ_COUNT", pkColumnValue="EXAMP_SESSION_SEQ")
+        valueColumnName="SEQ_COUNT", pkColumnValue="EXAMP_SESSION_SEQ",allocationSize = 1)
     @GeneratedValue(strategy=GenerationType.TABLE, generator="EXAMP_SESSION")
     @Id
     private int sessionId;

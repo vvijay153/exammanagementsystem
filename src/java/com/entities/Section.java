@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
 
 /**
@@ -19,7 +20,7 @@ import javax.persistence.TableGenerator;
 @Entity
 public class Section {
     @TableGenerator(name="SECTION", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME",
-        valueColumnName="SEQ_COUNT", pkColumnValue="SECTION_SEQ")
+        valueColumnName="SEQ_COUNT", pkColumnValue="SECTION_SEQ",allocationSize = 1)
     @GeneratedValue(strategy=GenerationType.TABLE, generator="SECTION")
     @Id
     private int sectionId;
@@ -28,5 +29,7 @@ public class Section {
     private String sectionType;
     List<Question> questions;
     private int sectionMarks;
+    
+   
     
 }

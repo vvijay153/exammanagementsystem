@@ -23,7 +23,7 @@ import javax.persistence.Version;
 @Entity
 public class Question {
     @TableGenerator(name="QUESTION", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME",
-        valueColumnName="SEQ_COUNT", pkColumnValue="QUESTION_SEQ")
+        valueColumnName="SEQ_COUNT", pkColumnValue="QUESTION_SEQ",allocationSize = 1)
     @GeneratedValue(strategy=GenerationType.TABLE, generator="QUESTION")
     @Id
     private int questionId;
@@ -34,6 +34,70 @@ public class Question {
            private Date createdDate;
            private Lecturer createdBy;
            private int mark;
+
+    public int getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
+    }
+
+    public List<SubjectTags> getSubjectTags() {
+        return subjectTags;
+    }
+
+    public void setSubjectTags(List<SubjectTags> subjectTags) {
+        this.subjectTags = subjectTags;
+    }
+
+    public int getVersionNumber() {
+        return versionNumber;
+    }
+
+    public void setVersionNumber(int versionNumber) {
+        this.versionNumber = versionNumber;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Lecturer getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Lecturer createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
+    public String getQuestionText() {
+        return questionText;
+    }
+
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
+    }
+
+    public int getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(int completed) {
+        this.completed = completed;
+    }
            private String questionText;
            @Transient
            private int completed;
