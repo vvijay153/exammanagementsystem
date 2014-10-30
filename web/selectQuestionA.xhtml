@@ -17,20 +17,18 @@
                     <p:column>
                         <p:selectOneMenu value="#{createExamPaperView.questionBank.selectedQuestionType}">
                             <p:ajax event="valueChange" update="@form"
-                                    listener="#{createExamPaperView.questionBank.selectQuestionTypeListener()}" />
+                                    listener="#{createExamPaperView.onSelectOfQuestion()}" />
                             <f:selectItems value="#{createExamPaperView.questionBank.questiontypes}"></f:selectItems>
                         </p:selectOneMenu>
                     </p:column>
                 </p:row>
 
                 <p:row>
-                    <p:dataTable value="${createExamPaperView.questionBank.questions}" var="question">
-                        <f:facet name="header">
-                            List of Question
-                        </f:facet>
-
-                    </p:dataTable>
-
+                    <p:column colspan="2">
+                        <p:dataTable id="dataTable" value="#{createExamPaperView.questionBank.module.questionBank.questions}" var="question" paginator="true" rows="5">
+                            <p:column colspan="2" rendered="#{question['class'].simpleName==createExamPaperView.questionBank.selectedQuestionType }"> <h:commandButton value="Add" action="#{createExamPaperView.addSelectedQuestionSectionA(question)}"></h:commandButton>  #{question.questionText}</p:column>
+                        </p:dataTable>
+                    </p:column>
                 </p:row>
             </p:panelGrid>
 

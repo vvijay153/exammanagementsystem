@@ -52,13 +52,16 @@
                                     <p:accordionPanel>
                                         <p:tab title="Section A  - Click to select Questions ">
 
-                                            <h:commandButton value="Add a question" action="#{createExamPaperView.addQuestion()}">
+                                            <h:commandButton value="Add a question" action="#{createExamPaperView.addQuestionSectionA()}">
                                                 <p:ajax update="@form" process="@form" />
                                             </h:commandButton>
 
                                         </p:tab>
                                         <p:tab title="Section B - Click to select Questions">
-                                            <h:outputText value="Ipsum" />
+                                            <h:commandButton value="Add a question" action="#{createExamPaperView.addQuestionSectionB()}">
+                                                <p:ajax update="@form" process="@form" />
+                                            </h:commandButton>
+                                            
                                         </p:tab>
                                         <p:tab title="Section C  - Click to select Questions ">
                                             <h:outputText value= "Lorem"/>

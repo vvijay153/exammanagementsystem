@@ -22,18 +22,19 @@ import javax.persistence.Version;
  */
 @Entity
 public class Question {
-    @TableGenerator(name="QUESTION", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME",
-        valueColumnName="SEQ_COUNT", pkColumnValue="QUESTION_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy=GenerationType.TABLE, generator="QUESTION")
+
+    @TableGenerator(name = "QUESTION", table = "SEQUENCE_TABLE", pkColumnName = "SEQ_NAME",
+            valueColumnName = "SEQ_COUNT", pkColumnValue = "QUESTION_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "QUESTION")
     @Id
     private int questionId;
     @OneToMany
     private List<SubjectTags> subjectTags;
     @Version
-           private int versionNumber;
-           private Date createdDate;
-           private Lecturer createdBy;
-           private int mark;
+    private int versionNumber;
+    private Date createdDate;
+    private Lecturer createdBy;
+    private int mark;
 
     public int getQuestionId() {
         return questionId;
@@ -98,8 +99,8 @@ public class Question {
     public void setCompleted(int completed) {
         this.completed = completed;
     }
-           private String questionText;
-           @Transient
-           private int completed;
-                   
+    private String questionText;
+    @Transient
+    private int completed;
+
 }

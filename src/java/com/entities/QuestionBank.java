@@ -92,12 +92,10 @@ public class QuestionBank implements Serializable{
     }
     
     public List<String> getQuestiontypes() {
-        System.out.println("in");
         questionTypes=new ArrayList<String>();
-        questionTypes.add("Multiple Type Question");
-        questionTypes.add("Multi Part Question");
-        questionTypes.add("Written Question");
-        System.out.println("ino");
+        questionTypes.add("MultipleChoiceQuestion");
+        questionTypes.add("MultiPart");
+        questionTypes.add("WrittenQuestion");
         return questionTypes;
     }
 
@@ -109,6 +107,7 @@ public class QuestionBank implements Serializable{
     public void selectQuestionTypeListener()
     {   
         System.out.println("selectedQuestionType:"+selectedQuestionType);
+        
     }
     
     

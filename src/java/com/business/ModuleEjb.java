@@ -6,6 +6,7 @@
 package com.business;
 
 import com.entities.Modules;
+import com.entities.MultipleChoiceQuestion;
 import com.entities.Question;
 import com.entities.QuestionBank;
 import com.entities.WrittenQuestion;
@@ -39,11 +40,18 @@ public class ModuleEjb {
         return qb.getResultList().get(0);
     }
 
-    public List<Question> findAllQuestionsForModule(String moduleName) {
-        System.out.println("MODNAME: " + moduleName);
-        TypedQuery<WrittenQuestion> qb = em.createQuery("select q.questions from QuestionBank q ", WrittenQuestion.class);
-        
-        System.out.println(qb.getResultList().get(0).getMark());
+    public List<Question> findAllQuestionsForModule(int moduleId) {
+        System.out.println("MODID: " + moduleId);
+        TypedQuery<QuestionBank> qb = em.createQuery("select q from QuestionBank q where q.module.moduleId=:moduleId ", QuestionBank.class);
+        qb.setParameter("moduleId", moduleId);
+        //  TypedQuery<MultipleChoiceQuestion> qb2 = em.createQuery("select q.questions from QuestionBank q ", MultipleChoiceQuestion.class);
+        System.out.println(qb.getResultList().size() + " >>");
+//        for (QuestionBank q : qb.getResultList()) {
+//            for (Question w : q.getQuestions()) {
+//                System.out.println(w.getClass().isInstance(new WrittenQuestion()));
+//            }
+//        }
+
         return null;
     }
 

@@ -33,8 +33,7 @@ public class ExamPaper {
    @OneToMany
    private List<Section>sections;
    
-   @ManyToOne()
-   private Modules module;
+   
 
     public int getExamPaperId() {
         return examPaperId;
@@ -76,13 +75,6 @@ public class ExamPaper {
         this.sections = sections;
     }
 
-    public Modules getModule() {
-        return module;
-    }
-
-    public void setModule(Modules module) {
-        this.module = module;
-    }
-   
+    
    
 }
