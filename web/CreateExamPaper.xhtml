@@ -279,7 +279,7 @@
                     <p:confirmDialog message="Are you sure about Create Exam Paper?"
                                      header="Create Exam paper" severity="alert"
                                      widgetVar="cd">
-                        <p:commandButton value="Yes Sure" action="#{createExamPaperView.createExamPaper()}"
+                        <p:commandButton value="Yes Sure" update="createQuestionform" action="#{createExamPaperView.createExamPaper()}"
                                         oncomplete="PF('cd').hide()"/>
                         <p:commandButton value="Not Yet" onclick="PF('cd').hide();" type="button" />
                     </p:confirmDialog>

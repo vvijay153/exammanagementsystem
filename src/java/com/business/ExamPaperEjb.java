@@ -34,6 +34,7 @@ public class ExamPaperEjb {
     
     public void getExampaper()
     {
-        
+        ExamPaper emp=em.find(ExamPaper.class, 1);
+        System.out.println("emp"+emp);
     }
 }

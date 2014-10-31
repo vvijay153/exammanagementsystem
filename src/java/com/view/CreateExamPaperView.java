@@ -554,7 +554,10 @@ public void addQuestionSectionD() {
 
     
     
-    
+    public void examPapers()
+    {
+        examPaperEjb.getExampaper();
+    }
     
 
 }
