@@ -5,16 +5,24 @@
  */
 package com.view;
 
+import com.business.ExamPaperEjb;
 import com.business.ModuleEjb;
 import com.entities.ExamPaper;
 import com.entities.Modules;
 import com.entities.Question;
 import com.entities.QuestionBank;
+import com.entities.Section;
 import com.entities.WrittenQuestion;
 import java.io.Serializable;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -35,6 +43,8 @@ public class CreateExamPaperView implements Serializable {
 
     @EJB
     private ModuleEjb moduleEjb;
+    @EJB
+    private ExamPaperEjb examPaperEjb;
     private Modules selectedModule;
     private List<Modules> allModules;
     private WrittenQuestion writtenQuestion;
@@ -45,6 +55,60 @@ public class CreateExamPaperView implements Serializable {
     private List<Question> SectionBQuestion;
     private List<Question> SectionCQuestion;
     private List<Question> SectionDQuestion;
+    private String[] selectedQuestionsAToDelete;
+    private Map<Long, Boolean> checkedA = new HashMap<Long, Boolean>();
+    private Map<Long, Boolean> checkedB = new HashMap<Long, Boolean>();
+    private Map<Long, Boolean> checkedC = new HashMap<Long, Boolean>();
+    private Date exameDateTime;
+
+    public Date getExameDateTime() {
+        return exameDateTime;
+    }
+
+    public void setExameDateTime(Date exameDateTime) {
+        this.exameDateTime = exameDateTime;
+    }
+
+    public Map<Long, Boolean> getCheckedB() {
+        return checkedB;
+    }
+
+    public void setCheckedB(Map<Long, Boolean> checkedB) {
+        this.checkedB = checkedB;
+    }
+
+    public Map<Long, Boolean> getCheckedC() {
+        return checkedC;
+    }
+
+    public void setCheckedC(Map<Long, Boolean> checkedC) {
+        this.checkedC = checkedC;
+    }
+
+    public Map<Long, Boolean> getCheckedD() {
+        return checkedD;
+    }
+
+    public void setCheckedD(Map<Long, Boolean> checkedD) {
+        this.checkedD = checkedD;
+    }
+    private Map<Long, Boolean> checkedD = new HashMap<Long, Boolean>();
+
+    public Map<Long, Boolean> getCheckedA() {
+        return checkedA;
+    }
+
+    public void setCheckedA(Map<Long, Boolean> checkedA) {
+        this.checkedA = checkedA;
+    }
+
+    public String[] getSelectedQuestionsAToDelete() {
+        return selectedQuestionsAToDelete;
+    }
+
+    public void setSelectedQuestionsAToDelete(String[] selectedQuestionsAToDelete) {
+        this.selectedQuestionsAToDelete = selectedQuestionsAToDelete;
+    }
 
     public List<Question> getSectionAQuestion() {
         return SectionAQuestion;
@@ -132,6 +196,7 @@ public class CreateExamPaperView implements Serializable {
         if (SectionDQuestion == null) {
             SectionDQuestion = new ArrayList<>();
         }
+        
     }
 
     public void addQuestionSectionA() {
@@ -140,6 +205,7 @@ public class CreateExamPaperView implements Serializable {
         RequestContext.getCurrentInstance().openDialog("selectQuestionA");
 
     }
+
     public void addQuestionSectionB() {
 
         questionBank.setQuestions(moduleEjb.findAllQuestionsForModule(questionBank.getModule().getModuleId()));
@@ -147,6 +213,21 @@ public class CreateExamPaperView implements Serializable {
 
     }
 
+    public void addQuestionSectionC() {
+
+        questionBank.setQuestions(moduleEjb.findAllQuestionsForModule(questionBank.getModule().getModuleId()));
+        RequestContext.getCurrentInstance().openDialog("selectQuestionC");
+
+    }
+public void addQuestionSectionD() {
+
+        questionBank.setQuestions(moduleEjb.findAllQuestionsForModule(questionBank.getModule().getModuleId()));
+        RequestContext.getCurrentInstance().openDialog("selectQuestionD");
+
+    }
+   
+    
+    
     public Modules getSelectedModule() {
 
         return selectedModule;
@@ -252,8 +333,228 @@ public class CreateExamPaperView implements Serializable {
     }
     
     
-    public void createExamPaper() {
+     public void addSelectedQuestionSectionC(Question selectedQuestion) {
+
+        if (SectionCQuestion.size() == 0) {
+            SectionCQuestion.add(selectedQuestion);
+            selectedQuestion.getQuestionText();
+           
+
+        } else {
+            int j = 0;
+            for (int i = 0; i < SectionCQuestion.size(); i++) {
+
+                Question q = (Question) SectionCQuestion.get(i);
+                System.out.println(q.getQuestionText() + " " + selectedQuestion.getQuestionText());
+                if ((q.getQuestionText().equalsIgnoreCase(selectedQuestion.getQuestionText()))) {
+                    j = 1;
+                    break;
+                }
+
+            }
+            if (j == 0) {
+                SectionCQuestion.add(selectedQuestion);
+                selectedQuestion.getQuestionText();
+                System.out.println("addselectedquestion2:" + selectedQuestion.getQuestionText());
+            }
+
+        }
+        
+        RequestContext.getCurrentInstance().closeDialog(null);
 
     }
+     
+     
+      public void addSelectedQuestionSectionD(Question selectedQuestion) {
+
+        if (SectionDQuestion.size() == 0) {
+            SectionDQuestion.add(selectedQuestion);
+            selectedQuestion.getQuestionText();
+            
+
+        } else {
+            int j = 0;
+            for (int i = 0; i < SectionDQuestion.size(); i++) {
+
+                Question q = (Question) SectionDQuestion.get(i);
+                System.out.println(q.getQuestionText() + " " + selectedQuestion.getQuestionText());
+                if ((q.getQuestionText().equalsIgnoreCase(selectedQuestion.getQuestionText()))) {
+                    j = 1;
+                    break;
+                }
+
+            }
+            if (j == 0) {
+                SectionDQuestion.add(selectedQuestion);
+                selectedQuestion.getQuestionText();
+            }
+
+        }
+        RequestContext.getCurrentInstance().closeDialog(null);
+
+    }
+    
+
+    public int retrieveMarksForSectionA() {
+        int marks = 0;
+        if (SectionAQuestion != null) {
+            for (int i = 0; i < SectionAQuestion.size(); i++) {
+                Question q = (Question) SectionAQuestion.get(i);
+                marks += q.getMark();
+
+            }
+        }
+        return marks;
+    }
+
+    public int retrieveMarksForSectionB() {
+        int marks = 0;
+        if (SectionBQuestion != null) {
+            for (int i = 0; i < SectionBQuestion.size(); i++) {
+                Question q = (Question) SectionBQuestion.get(i);
+                marks +=q.getMark();
+
+            }
+        }
+        return marks;
+    }
+    public int retrieveMarksForSectionC() {
+        int marks = 0;
+        if (SectionCQuestion != null) {
+            for (int i = 0; i < SectionCQuestion.size(); i++) {
+                Question q = (Question) SectionCQuestion.get(i);
+                marks +=q.getMark();
+
+            }
+        }
+        return marks;
+    }
+    
+    
+      public int retrieveMarksForSectionD() {
+        int marks = 0;
+        if (SectionDQuestion != null) {
+            for (int i = 0; i < SectionDQuestion.size(); i++) {
+                Question q = (Question) SectionDQuestion.get(i);
+                marks += q.getMark();
+
+            }
+        }
+        return marks;
+    }
+
+    public void deleteQuestionSectionA() {
+
+        System.out.println(checkedA);
+
+        if (SectionAQuestion != null) {
+            for (int i = 0; i < SectionAQuestion.size(); i++) {
+                Question q = (Question) SectionAQuestion.get(i);
+                if (checkedA.get(q.getQuestionId())) {
+                    SectionAQuestion.remove(q);
+                    i = i - 1;
+                }
+            }
+            System.out.println("After remove: " + SectionAQuestion.size());
+        }
+
+
+    }
+
+    public void deleteQuestionSectionB() {
+
+        if (SectionBQuestion != null) {
+            for (int i = 0; i < SectionBQuestion.size(); i++) {
+                Question q = (Question) SectionBQuestion.get(i);
+                if (checkedB.get(q.getQuestionId())) {
+                    SectionBQuestion.remove(q);
+                    i = i - 1;
+                }
+            }
+        }
+    }
+
+    public void deleteQuestionSectionC() {
+
+        if (SectionCQuestion != null) {
+            for (int i = 0; i < SectionCQuestion.size(); i++) {
+                Question q = (Question) SectionCQuestion.get(i);
+                if (checkedC.get(q.getQuestionId())) {
+                    SectionCQuestion.remove(q);
+                    i = i - 1;
+                }
+            }
+        }
+    }
+    
+    
+    public void deleteQuestionSectionD() {
+
+        if (SectionDQuestion != null) {
+            for (int i = 0; i < SectionDQuestion.size(); i++) {
+                Question q = (Question) SectionDQuestion.get(i);
+                if (checkedD.get(q.getQuestionId())) {
+                    SectionDQuestion.remove(q);
+                    i = i - 1;
+                }
+            }
+        }
+    }
+    
+    public String createExamPaper() {
+        System.out.println("Create Exam paper");
+        
+        examPaper=new ExamPaper();
+        examPaper.setCreatedDate(new java.sql.Date(System.currentTimeMillis()));
+        Date examDate=new java.sql.Date(exameDateTime.getTime());
+        examPaper.setExamDate((java.sql.Date) examDate);
+        Time examDuration = new Time(examPaper.getExamDate().getTime());
+        examPaper.setExamDuration(examDuration);
+        examPaper.setModuleCode(selectedModule.getModuleId());
+        
+        List<Section> allSections=new  ArrayList<Section>();
+        if(SectionAQuestion.size()>0){
+        Section sectionA=new Section();
+        sectionA.setName("A");
+        sectionA.setQuestions(SectionAQuestion);
+        sectionA.setSectionMarks(retrieveMarksForSectionA());
+        allSections.add(sectionA);
+        }
+        if(SectionBQuestion.size()>0){
+        Section sectionB=new Section();
+        sectionB.setName("B");
+        sectionB.setQuestions(SectionBQuestion);
+        sectionB.setSectionMarks(retrieveMarksForSectionB());
+        allSections.add(sectionB);
+        }
+        if(SectionCQuestion.size()>0){
+        Section sectionC=new Section();
+        sectionC.setName("A");
+        sectionC.setQuestions(SectionCQuestion);
+        sectionC.setSectionMarks(retrieveMarksForSectionA());
+        allSections.add(sectionC);
+        }
+        if(SectionDQuestion.size()>0){
+        Section sectionD=new Section();
+        sectionD.setName("A");
+        sectionD.setQuestions(SectionCQuestion);
+        sectionD.setSectionMarks(retrieveMarksForSectionD());
+        allSections.add(sectionD);
+        }
+        
+        examPaper.setSections(allSections);
+        List<ExamPaper> ep=new ArrayList<ExamPaper>();
+        ep.add(examPaper);
+        selectedModule.setExamPaper(ep);
+        System.out.println(examPaper);
+        
+        System.out.println("Exam Saved: "+examPaperEjb.saveExamPaper(examPaper));
+        return "null";
+    }
+
+    
+    
+    
+    
 
 }

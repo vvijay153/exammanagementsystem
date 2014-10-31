@@ -25,10 +25,41 @@ public class Section {
     @Id
     private int sectionId;
     private String name;
-    private int totMarks;
-    private String sectionType;
     List<Question> questions;
     private int sectionMarks;
+
+    public int getSectionId() {
+        return sectionId;
+    }
+
+    public void setSectionId(int sectionId) {
+        this.sectionId = sectionId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
+    public int getSectionMarks() {
+        return sectionMarks;
+    }
+
+    public void setSectionMarks(int sectionMarks) {
+        this.sectionMarks = sectionMarks;
+    }
     
    
     

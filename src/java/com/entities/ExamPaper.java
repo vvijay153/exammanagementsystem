@@ -6,6 +6,7 @@
 package com.entities;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,6 +33,15 @@ public class ExamPaper {
    private int moduleCode;
    @OneToMany
    private List<Section>sections;
+   private Time examDuration;
+
+    public Time getExamDuration() {
+        return examDuration;
+    }
+
+    public void setExamDuration(Time examDuration) {
+        this.examDuration = examDuration;
+    }
    
    
 
@@ -73,6 +83,11 @@ public class ExamPaper {
 
     public void setSections(List<Section> sections) {
         this.sections = sections;
+    }
+
+    @Override
+    public String toString() {
+        return this.createdDate+" "+this.examDate+" "+this.examDuration+" "+this.examPaperId+" "+this.moduleCode+" "+this.sections.size();
     }
 
     

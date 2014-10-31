@@ -49,98 +49,240 @@
 
                             <p:row>
                                 <p:column colspan="2">
-                                    <p:accordionPanel>
-                                        <p:tab title="Section A  - Click to select Questions ">
+                                    <p:accordionPanel id="sectionAPanel">
+                                        <p:tab title="Section A  - Click to select Questions    MARKS - ${createExamPaperView.retrieveMarksForSectionA()}">
 
-                                            <h:commandButton value="Add a question" action="#{createExamPaperView.addQuestionSectionA()}">
-                                                <p:ajax update="@form" process="@form" />
-                                            </h:commandButton>
+                                            <p:commandButton value="Add a question" actionListener="#{createExamPaperView.addQuestionSectionA()}">
+                                                <p:ajax event="dialogReturn" listener="#{createExamPaperView.onModuleChosen(event)}"  update="@form" />
 
-                                        </p:tab>
-                                        <p:tab title="Section B - Click to select Questions">
-                                            <h:commandButton value="Add a question" action="#{createExamPaperView.addQuestionSectionB()}">
-                                                <p:ajax update="@form" process="@form" />
-                                            </h:commandButton>
-                                            
-                                        </p:tab>
-                                        <p:tab title="Section C  - Click to select Questions ">
-                                            <h:outputText value= "Lorem"/>
+                                            </p:commandButton>
+                                            <p:commandButton value="Delete selected question" actionListener="#{createExamPaperView.deleteQuestionSectionA()}" update="@form">
+                                            </p:commandButton>
+                                            <p:dataTable paginator="true" rows="5" value="#{createExamPaperView.sectionAQuestion}" var="question" id="sectionAdatatable"> 
+                                                <f:facet name="header">
+                                                    List of Selected Questions
+                                                </f:facet>
 
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Select" />
+                                                    </f:facet>
+                                                    <h:column>
+                                                        <h:selectBooleanCheckbox value="#{createExamPaperView.checkedA[question.questionId]}" />
+                                                    </h:column>
+                                                </p:column>
+
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Question ID" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.questionId}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Question" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.questionText}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Marks" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.mark}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="version Number" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.versionNumber}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Created Date" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.createdDate}" />
+                                                </p:column>
+                                            </p:dataTable>
                                         </p:tab>
-                                        <p:tab title="Section D - Click to select Questions">
-                                            <h:outputText value="Ipsum" />
+                                        <p:tab title="Section B - Click to select Questions  MARKS - ${createExamPaperView.retrieveMarksForSectionB()}">
+                                            <p:commandButton value="Add a question" actionListener="#{createExamPaperView.addQuestionSectionB()}">
+                                                <p:ajax event="dialogReturn" listener="#{createExamPaperView.onModuleChosen(event)}"  update="@form" />
+                                            </p:commandButton>
+                                            <p:commandButton value="Delete selected question" actionListener="#{createExamPaperView.deleteQuestionSectionB()}" update="@form">
+                                            </p:commandButton>
+                                            <p:dataTable paginator="true" rows="5" value="#{createExamPaperView.sectionBQuestion}" var="question" id="sectionBdatatable"> 
+                                                <f:facet name="header">
+                                                    List of Selected Questions
+                                                </f:facet>
+
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Select" />
+                                                    </f:facet>
+                                                    <h:column>
+                                                        <h:selectBooleanCheckbox value="#{createExamPaperView.checkedB[question.questionId]}" />
+                                                    </h:column>
+                                                </p:column>
+
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Question ID" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.questionId}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Question" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.questionText}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Marks" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.mark}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="version Number" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.versionNumber}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Created Date" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.createdDate}" />
+                                                </p:column>
+                                            </p:dataTable>
+                                        </p:tab>
+                                        <p:tab title="Section C  - Click to select Questions MARKS - ${createExamPaperView.retrieveMarksForSectionC()}">
+                                            <p:commandButton value="Add a question" actionListener="#{createExamPaperView.addQuestionSectionC()}">
+                                                <p:ajax event="dialogReturn" listener="#{createExamPaperView.onModuleChosen(event)}"  update="@form" />
+                                            </p:commandButton>
+                                            <p:commandButton value="Delete selected question" actionListener="#{createExamPaperView.deleteQuestionSectionC()}" update="@form">
+                                            </p:commandButton>
+                                            <p:dataTable paginator="true" rows="5" value="#{createExamPaperView.sectionCQuestion}" var="question" id="sectionCdatatable"> 
+                                                <f:facet name="header">
+                                                    List of Selected Questions
+                                                </f:facet>
+
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Select" />
+                                                    </f:facet>
+                                                    <h:column>
+                                                        <h:selectBooleanCheckbox value="#{createExamPaperView.checkedC[question.questionId]}" />
+                                                    </h:column>
+                                                </p:column>
+
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Question ID" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.questionId}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Question" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.questionText}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Marks" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.mark}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="version Number" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.versionNumber}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Created Date" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.createdDate}" />
+                                                </p:column>
+                                            </p:dataTable>
+                                        </p:tab>
+                                        <p:tab title="Section D - Click to select Questions MARKS - ${createExamPaperView.retrieveMarksForSectionD()}">
+                                            <p:commandButton value="Add a question" actionListener="#{createExamPaperView.addQuestionSectionD()}">
+                                                <p:ajax event="dialogReturn" listener="#{createExamPaperView.onModuleChosen(event)}"  update="@form" />
+                                            </p:commandButton>
+                                            <p:commandButton value="Delete selected question" actionListener="#{createExamPaperView.deleteQuestionSectionD()}" update="@form">
+                                            </p:commandButton>
+                                            <p:dataTable paginator="true" rows="5" value="#{createExamPaperView.sectionDQuestion}" var="question" id="sectionDdatatable"> 
+                                                <f:facet name="header">
+                                                    List of Selected Questions
+                                                </f:facet>
+
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Select" />
+                                                    </f:facet>
+                                                    <h:column>
+                                                        <h:selectBooleanCheckbox value="#{createExamPaperView.checkedD[question.questionId]}" />
+                                                    </h:column>
+                                                </p:column>
+
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Question ID" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.questionId}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Question" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.questionText}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Marks" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.mark}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="version Number" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.versionNumber}" />
+                                                </p:column>
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Created Date" />
+                                                    </f:facet>
+                                                    <h:outputText value="#{question.createdDate}" />
+                                                </p:column>
+                                            </p:dataTable>
                                         </p:tab>
                                         //any number of tabs
                                     </p:accordionPanel>
                                 </p:column>
                             </p:row>
-                            <!--                                                        <p:row>
-                                                                                        <p:column >Select type of Question</p:column>
-                                                                                        <p:column>
-                                                                                            <p:selectOneMenu value="#{questionBank.selectedQuestionType}">
-                                                                                                <p:ajax event="valueChange" update="@form"
-                                                                                                        listener="#{questionBank.selectQuestionTypeListener()}" />
-                                                                                                <f:selectItems value="#{questionBank.questiontypes}"></f:selectItems>
-                                                                                            </p:selectOneMenu>
-                                                                                        </p:column>
-                                                                                    </p:row>-->
 
-
-                            <!--
-                                                        <p:row rendered="#{questionBank.selectedQuestionType eq 'Written Question'}" id="writtenQuestion">
-                                                            <p:column>Question</p:column>
-                                                            <p:column><h:inputTextarea rows="4" cols="40" value=""></h:inputTextarea></p:column>
-                                                        </p:row>
-                            
-                                                        <p:row rendered="#{questionBank.selectedQuestionType eq 'Multiple Type Question'}" id="multiTypeQuestion">
-                                                            <p:column colspan="2" >
-                                                                <p:panelGrid>
-                                                                    <p:row>
-                                                                        <p:column>Question</p:column>
-                                                                        <p:column><h:inputTextarea rows="4" cols="70" value="#"></h:inputTextarea></p:column>
-                                                                    </p:row>
-                                                                    <p:row>
-                                                                        <p:column>Option 1</p:column>
-                                                                        <p:column><h:inputText  value="#"></h:inputText></p:column>
-                                                                    </p:row>
-                                                                    <p:row>
-                                                                        <p:column>Option 2</p:column>
-                                                                        <p:column><h:inputText  value="#"></h:inputText></p:column>
-                                                                    </p:row>
-                                                                    <p:row>
-                                                                        <p:column>Option 3</p:column>
-                                                                        <p:column><h:inputText  value="#"></h:inputText></p:column>
-                                                                    </p:row>
-                                                                    <p:row>
-                                                                        <p:column>Option 4</p:column>
-                                                                        <p:column><h:inputText  value="#"></h:inputText></p:column>
-                                                                    </p:row>
-                                                                </p:panelGrid>
-                                                            </p:column>
-                                                        </p:row>
-                                                        <p:row rendered="#{questionBank.selectedQuestionType eq 'Multi Part Question'}" id="multiPartQuestion">
-                            
-                                                            <p:column>Question</p:column>
-                                                            <p:column><h:inputTextarea rows="4" cols="40" value="#"></h:inputTextarea></p:column>
-                                                        </p:row>
-                                                        <p:row rendered="#{(questionBank.selectedQuestionType eq 'Multi Part Question') or (questionBank.selectedQuestionType eq 'Multiple Type Question') or (questionBank.selectedQuestionType eq 'Written Question')}">
-                                                            <p:column>Marks Alloted</p:column>
-                                                            <p:column><p:spinner value="" stepFactor="1"></p:spinner></p:column>
-                                                        </p:row>
-                                                        <p:row>
-                            
-                                                            <p:column colspan="2"  style="alignment-adjust: central">
-                                                                <h:commandButton value="Create/Update" ></h:commandButton>
-                            
-                                                            </p:column>
-                            
-                                                        </p:row>-->
                         </p:panelGrid>
                     </div> 
 
                     <p:dialog header="Effects" widgetVar="dlg1" showEffect="explode" hideEffect="bounce" height="100">
                         <h:outputText value="This dialog has nice effects." />
                     </p:dialog>
+
+                    <p:outputLabel value="Select Exam Date and Duration"/>
+                    <p:calendar value="#{createExamPaperView.exameDateTime}" pattern="MM/dd/yyyy HH:mm" />
+                    
+                    <p:commandButton type="button" onclick="PF('cd').show()" value="Create Exam"/>
+                    <p:confirmDialog message="Are you sure about Create Exam Paper?"
+                                     header="Create Exam paper" severity="alert"
+                                     widgetVar="cd">
+                        <p:commandButton value="Yes Sure" action="#{createExamPaperView.createExamPaper()}"
+                                        oncomplete="PF('cd').hide()"/>
+                        <p:commandButton value="Not Yet" onclick="PF('cd').hide();" type="button" />
+                    </p:confirmDialog>
 
                 </h:form>
             </ui:define>
