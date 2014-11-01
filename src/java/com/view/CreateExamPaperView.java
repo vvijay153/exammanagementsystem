@@ -613,12 +613,23 @@ public class CreateExamPaperView implements Serializable {
     
     
     
-    public void generateAutomaticQuestion(String section)
+    public void generateAutomaticQuestion(String section,int marks)
     {
-        System.out.println("New");
+        System.out.println("News: "+marks);
         if(section.trim().equalsIgnoreCase("A")){     
            
-           SectionAQuestion=questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag);
+           SectionAQuestion=questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag,marks);
+        }else if(section.trim().equalsIgnoreCase("B")){     
+           
+           SectionBQuestion=questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag,marks);
+        }
+        else if(section.trim().equalsIgnoreCase("C")){     
+           
+           SectionCQuestion=questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag,marks);
+        }
+        else if(section.trim().equalsIgnoreCase("D")){     
+           
+           SectionDQuestion=questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag,marks);
         }
     }
 
