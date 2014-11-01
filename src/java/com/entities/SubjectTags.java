@@ -24,8 +24,21 @@ public class SubjectTags {
     @Id
     private int subjectTagId;
     private String subjectTagname;
-    
-    @ManyToOne
-    private Question question;
+
+    public int getSubjectTagId() {
+        return subjectTagId;
+    }
+
+    public void setSubjectTagId(int subjectTagId) {
+        this.subjectTagId = subjectTagId;
+    }
+
+    public String getSubjectTagname() {
+        return subjectTagname;
+    }
+
+    public void setSubjectTagname(String subjectTagname) {
+        this.subjectTagname = subjectTagname;
+    }
     
 }

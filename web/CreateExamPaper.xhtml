@@ -40,12 +40,8 @@
                                     </p:commandButton>
                                 </p:column>
                             </p:row>
-                            <p:row>
-                                <p:column >Subject Tag</p:column>
-                                <p:column ><h:inputText value="#"></h:inputText>
-                                    <p:commandButton value="Select Tags" type="button" onclick="PF('dlg1').show();" style="border-width: 0" />
-                                </p:column>
-                            </p:row>
+
+
 
                             <p:row>
                                 <p:column colspan="2">
@@ -58,6 +54,19 @@
                                             </p:commandButton>
                                             <p:commandButton value="Delete selected question" actionListener="#{createExamPaperView.deleteQuestionSectionA()}" update="@form">
                                             </p:commandButton>
+                                            
+                                            <p:panelGrid columns="2">
+                                                <p:outputLabel value="Enter marks for section"/>
+                                                <p:inputText value="#{createExamPaperView.marksForA}"/>
+                                                <p:outputLabel value="Select Subject tags"/>
+                                                <h:selectManyListbox value="#{createExamPaperView.seletedSubjectTag}">
+                                                    <f:selectItems value="#{createExamPaperView.subjectTags}" var="subjectTags" itemLabel="#{subjectTags.subjectTagname}" itemValue="#{subjectTags.subjectTagId}"/>
+                                                </h:selectManyListbox>
+                                                <p:commandButton value="Generate Questions for Section A" action="#{createExamPaperView.generateAutomaticQuestion('A')}" update="@form">
+                                                </p:commandButton>
+                                            </p:panelGrid>
+
+
                                             <p:dataTable paginator="true" rows="5" value="#{createExamPaperView.sectionAQuestion}" var="question" id="sectionAdatatable"> 
                                                 <f:facet name="header">
                                                     List of Selected Questions
@@ -274,13 +283,13 @@
 
                     <p:outputLabel value="Select Exam Date and Duration"/>
                     <p:calendar value="#{createExamPaperView.exameDateTime}" pattern="MM/dd/yyyy HH:mm" />
-                    
+
                     <p:commandButton type="button" onclick="PF('cd').show()" value="Create Exam"/>
                     <p:confirmDialog message="Are you sure about Create Exam Paper?"
                                      header="Create Exam paper" severity="alert"
                                      widgetVar="cd">
                         <p:commandButton value="Yes Sure" update="createQuestionform" action="#{createExamPaperView.createExamPaper()}"
-                                        oncomplete="PF('cd').hide()"/>
+                                         oncomplete="PF('cd').hide()"/>
                         <p:commandButton value="Not Yet" onclick="PF('cd').hide();" type="button" />
                     </p:confirmDialog>
 
