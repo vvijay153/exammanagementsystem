@@ -10,28 +10,39 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.TableGenerator;
 
 @Entity
 @RequestScoped
 @Named
-public class Lecturer extends User{
+public class Lecturer {
 
+    @TableGenerator(name = "LECTURER_GEN", table = "SEQUENCE_TABLE", pkColumnName = "SEQ_NAME",
+            valueColumnName = "SEQ_COUNT", pkColumnValue = "LECTURER_SEQ", initialValue = 0, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "LECTURER_GEN")
+    @Id
+    private int id;
     @OneToMany
     private List<Modules> selectedModules;
     private int firstLogin;
 
-   /* public List<String> getSelectedModules() {
+    private String name;
+    private String userName;
+
+    /* public List<String> getSelectedModules() {
         
-        List <String> modulesList = new ArrayList<>();
-        modulesList.add(("oodp"));
-        modulesList.add(("Jave"));
-        modulesList.add(("EI"));
-        return modulesList;
-    }
+     List <String> modulesList = new ArrayList<>();
+     modulesList.add(("oodp"));
+     modulesList.add(("Jave"));
+     modulesList.add(("EI"));
+     return modulesList;
+     }
 
-    */
-
+     */
     public int getFirstLogin() {
         return firstLogin;
     }
@@ -39,17 +50,15 @@ public class Lecturer extends User{
     public void setFirstLogin(int firstLogin) {
         this.firstLogin = firstLogin;
     }
-    
+
 
     /*public List<Modules> getModulesList() {
-        List <Modules> modulesList = new ArrayList<>();
-        modulesList.add(new Modules("oodp"));
-        modulesList.add(new Modules("Jave"));
-        modulesList.add(new Modules("EI"));
-        return modulesList;
-    } */
-
-    
+     List <Modules> modulesList = new ArrayList<>();
+     modulesList.add(new Modules("oodp"));
+     modulesList.add(new Modules("Jave"));
+     modulesList.add(new Modules("EI"));
+     return modulesList;
+     } */
     public List<Modules> getSelectedModules() {
         return selectedModules;
     }
@@ -57,7 +66,5 @@ public class Lecturer extends User{
     public void setSelectedModules(List<Modules> selectedModules) {
         this.selectedModules = selectedModules;
     }
-   
-    
-    
+
 }
