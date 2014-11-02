@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Student</title>
+        <h:outputStylesheet name="./css/default.css"/>
+    </h:head>
+    <h:body> 
+
+        <h:form>
+
+            <p:menubar>
+                <p:menuitem value="Home" url="#" icon="ui-icon-home" />
+                <p:menuitem value="Profile" url="#" icon="ui-icon-person" />
+                <p:menuitem value="Exam Enroll" url="#" icon="ui-icon-clipboard" />
+                <f:facet name="options">
+                    <p:inputText style="margin-right:10px" placeholder="Search"/>
+                    <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                </f:facet>
+            </p:menubar>
+            <br/>
+            <p:fieldset legend="Student Information">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel value="Student Id :"/> 
+                    <p:outputLabel value="" />
+                    <p:outputLabel value="Student Name :"/> 
+                    <p:outputLabel value="" />
+                    
+                </h:panelGrid>
+            </p:fieldset>
+            <p:fieldset legend="Enrolled Exam Details">
+            <p:dataTable var="car" value="">
+                <p:column headerText="Exam Id">
+                    <h:outputText value="" />
+                </p:column>
+
+                <p:column headerText="Date">
+                    <h:outputText value="" />
+                </p:column>
+
+                <p:column headerText="Time">
+                    <h:outputText value="" />
+                </p:column>
+
+                <p:column headerText="Action">
+                    <p:commandButton value="Start Examination" id="nonAjax" ajax="false" />
+                </p:column>
+            </p:dataTable>
+           </p:fieldset>
+        </h:form>
+        <h:outputText value=""/>
+        <h:outputText value=""/>
+    </h:body>
+</html>
+
