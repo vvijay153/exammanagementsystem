@@ -23,18 +23,46 @@ import javax.persistence.TableGenerator;
  */
 @Entity
 public class ExamPaper {
-    @TableGenerator(name="EXAMP_PAPER", table="SEQUENCE_TABLE", pkColumnName="SEQ_NAME",
-        valueColumnName="SEQ_COUNT", pkColumnValue="EXAMP_PAPER_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy=GenerationType.TABLE, generator="EXAMP_PAPER")
-    @Id
-   private int examPaperId;
-   private Date createdDate;
-   private Date examDate;
-   private int moduleCode;
-   @OneToMany
-   private List<Section>sections;
-   private Time examDuration;
 
+    @TableGenerator(name = "EXAMP_PAPER", table = "SEQUENCE_TABLE", pkColumnName = "SEQ_NAME",
+            valueColumnName = "SEQ_COUNT", pkColumnValue = "EXAMP_PAPER_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "EXAMP_PAPER")
+    @Id
+    private int examPaperId;
+    private Date createdDate;
+    private Date examDate;
+    private int moduleCode;
+    @OneToMany
+    private List<Section> sections;
+    private Time examDuration;
+    private Time startTime;
+    private Time endTime;
+
+    private int completed;
+
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
+
+    public Time getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Time endTime) {
+        this.endTime = endTime;
+    }
+
+    public int getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(int completed) {
+        this.completed = completed;
+    }
     public Time getExamDuration() {
         return examDuration;
     }
@@ -42,8 +70,6 @@ public class ExamPaper {
     public void setExamDuration(Time examDuration) {
         this.examDuration = examDuration;
     }
-   
-   
 
     public int getExamPaperId() {
         return examPaperId;
@@ -87,9 +113,7 @@ public class ExamPaper {
 
     @Override
     public String toString() {
-        return this.createdDate+" "+this.examDate+" "+this.examDuration+" "+this.examPaperId+" "+this.moduleCode+" "+this.sections.size();
+        return this.createdDate + " " + this.examDate + " " + this.examDuration + " " + this.examPaperId + " " + this.moduleCode + " " + this.sections.size();
     }
 
-    
-   
 }

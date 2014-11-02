@@ -9,6 +9,7 @@ import com.entities.Admin;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,8 @@ public class UserSessionBean implements Serializable {
     private String UserName;
     private String role;
     private String password;
+    
+    @Inject StudentInfoView studentInfoView;
 
     public String getPassword() {
         return password;
@@ -56,6 +59,9 @@ public class UserSessionBean implements Serializable {
         HttpServletRequest req = (HttpServletRequest) fc.getExternalContext().getRequest();
         try {
             req.login(UserName, password);
+            
+            //studentInfoView.getStudent().setUserName(UserName);
+            //studentInfoView.fillStudentInfo();
         } catch (ServletException ex) {
             System.out.println("Login failed");
             return "error.xhtml";
@@ -67,6 +73,7 @@ public class UserSessionBean implements Serializable {
             return "/faces/admin/protected.xhtml?faces-redirect=true";
         }else if(FacesContext.getCurrentInstance().getExternalContext().isUserInRole("student")){
             System.out.println(">>>in student");
+            return "/faces/student/student.xhtml?faces-redirect=true";
         }else if(FacesContext.getCurrentInstance().getExternalContext().isUserInRole("lecturer")){
             System.out.println(">>>in lecturer");
             return "/faces/lecturer/LectureMainPage.xhtml?faces-redirect=true";

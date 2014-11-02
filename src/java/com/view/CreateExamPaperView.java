@@ -18,6 +18,8 @@ import com.entities.WrittenQuestion;
 import java.io.Serializable;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -563,6 +565,16 @@ public class CreateExamPaperView implements Serializable {
         Date examDate = new java.sql.Date(exameDateTime.getTime());
         examPaper.setExamDate((java.sql.Date) examDate);
         Time examDuration = new Time(examPaper.getExamDate().getTime());
+       
+        Calendar c=Calendar.getInstance();
+        c.setTime(examDate);
+        System.out.println("TINsE:"+c.getTimeInMillis());
+        
+        DateFormat format=new SimpleDateFormat("HH");
+        String dateF=format.format(examDate);
+        System.out.println("TTT:"+new Integer(dateF));
+        
+        
         examPaper.setExamDuration(examDuration);
         examPaper.setModuleCode(selectedModule.getModuleId());
 

@@ -34,21 +34,59 @@ public class Student {
     @OneToMany
     private List<Modules> modulesEnrolled;
     private int firstLogin;
-
     private String name;
     private String userName;
-
-    @OneToOne
-    private List<ExamPaper> examsCompleted;
-
-    public List<ExamPaper> getExamsCompleted() {
-        return examsCompleted;
+    
+    @OneToMany
+    private List<ExamPaper> examsEnrolled;
+   
+    public List<ExamPaper> getExamsEnrolled() {
+        return examsEnrolled;
     }
 
-    public void setExamsCompleted(List<ExamPaper> examsCompleted) {
-        this.examsCompleted = examsCompleted;
+    public void setExamsEnrolled(List<ExamPaper> examsEnrolled) {
+        this.examsEnrolled = examsEnrolled;
     }
 
+  
+    
+    
+
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+   
     public int getFirstLogin() {
         return firstLogin;
     }

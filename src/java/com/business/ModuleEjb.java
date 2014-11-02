@@ -9,6 +9,7 @@ import com.entities.Modules;
 import com.entities.MultipleChoiceQuestion;
 import com.entities.Question;
 import com.entities.QuestionBank;
+import com.entities.Admin;
 import com.entities.WrittenQuestion;
 import java.util.List;
 import javax.ejb.Stateful;
@@ -52,7 +53,17 @@ public class ModuleEjb {
 //            }
 //        }
 
-        return null;
+        
+        return qb.getResultList().get(0).getQuestions();
     }
 
+    
+    
+    public String moduleNameforModuleId(int moduleId)
+    {
+        Modules module=em.find(Modules.class, moduleId);
+        return module.getModuleName();
+    }
+    
+    
 }
