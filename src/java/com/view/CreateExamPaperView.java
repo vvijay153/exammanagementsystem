@@ -626,6 +626,19 @@ public class CreateExamPaperView implements Serializable {
            
             SectionDQuestion = questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag, marks);
 
+
+           SectionAQuestion=questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag,marks);
+        }else if(section.trim().equalsIgnoreCase("B")){     
+           
+           SectionBQuestion=questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag,marks);
+        }
+        else if(section.trim().equalsIgnoreCase("C")){     
+           
+           SectionCQuestion=questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag,marks);
+        }
+        else if(section.trim().equalsIgnoreCase("D")){     
+           
+           SectionDQuestion=questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag,marks);
         }
     }
 
