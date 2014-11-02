@@ -49,7 +49,7 @@ public class CreateExamPaperView implements Serializable {
     private ExamPaperEjb examPaperEjb;
     @EJB
     private QuestionEjb questionEjb;
-    
+
     private Modules selectedModule;
     private List<Modules> allModules;
     private WrittenQuestion writtenQuestion;
@@ -255,11 +255,10 @@ public class CreateExamPaperView implements Serializable {
         if (SectionDQuestion == null) {
             SectionDQuestion = new ArrayList<>();
         }
-        
-        
-        subjectTags=questionEjb.retrieveQuestionsOnSubjectTags();
+
+        subjectTags = questionEjb.retrieveQuestionsOnSubjectTags();
         System.out.println("populated");
-        
+
     }
 
     public void addQuestionSectionA() {
@@ -610,15 +609,23 @@ public class CreateExamPaperView implements Serializable {
     public void examPapers() {
         examPaperEjb.getExampaper();
     }
-    
-    
-    
-    public void generateAutomaticQuestion(String section)
-    {
-        System.out.println("New");
-        if(section.trim().equalsIgnoreCase("A")){     
+
+    public void generateAutomaticQuestion(String section, int marks) {
+        System.out.println("News: " + marks);
+        if (section.trim().equalsIgnoreCase("A")) {
+
+            SectionAQuestion = questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag, marks);
+        } else if (section.trim().equalsIgnoreCase("B")) {
+            SectionBQuestion = questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag, marks);
+
+        }else if (section.trim().equalsIgnoreCase("C")) {
+            
+            SectionCQuestion = questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag, marks);
+
+        }else if (section.trim().equalsIgnoreCase("D")) {
            
-           SectionAQuestion=questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag);
+            SectionDQuestion = questionEjb.findAllQuestionsForSubjectTag(seletedSubjectTag, marks);
+
         }
     }
 

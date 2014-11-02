@@ -1,8 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -12,20 +14,35 @@
         <!--<link href="./css/cssLayout.css"></link>
         <link href="./css/default.css"></link>-->
         <h:outputStylesheet name="./css/default.css"/>
-                <h:outputStylesheet name="./css/cssLayout.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
 
+        <h:outputStylesheet library="bootstrap" name="primefaces-bootstrap/theme.css" />
 
-                            <title>Facelets Template</title>
+        <title>Facelets Template</title>
     </h:head>
 
     <h:body>
 
         <div id="top" align="center" style="font-size: 25px">
-            <ui:insert name="top" >Exam Management System</ui:insert>
+            <ui:insert name="top" >Exam Management System
+
+            </ui:insert>
+
+
+
         </div>
         <div>
-            <div id="left" >
+            <div id="left" style="padding-right: 10px">
                 <ui:insert name="left">Left</ui:insert>
+                <h:form>
+                <p:menu>
+                    
+                    <p:menuitem value="Create Exam paper" url="CreateExamPaper.xhtml" rendered="#{request.isUserInRole('lecturer')}"/>
+                    <p:menuitem value="Add/Update Questions"  rendered="#{request.isUserInRole('lecturer')}"/>
+                    <p:menuitem value="Invigilate Exams" url="invigilateExams.xhtml" rendered="#{request.isUserInRole('lecturer')}" />
+                    <p:menuitem value="Exam Start" rendered="#{request.isUserInRole('student')}" />
+                </p:menu>
+                    </h:form>
             </div>
             <div>
                 <div id="right">
@@ -36,9 +53,9 @@
                 </div>
             </div>
         </div>
-        <div id="bottom" style="font-size: 25px">
+<!--        <div id="bottom" style="font-size: 25px">
             <ui:insert name="bottom">For any problem contact - 84546151</ui:insert>
-        </div>
+        </div>-->
 
     </h:body>
 

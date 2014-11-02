@@ -11,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -21,6 +22,28 @@ import javax.persistence.OneToMany;
 @RequestScoped
 public class Student extends User {
     private List<Modules> modulesEnrolled;
+    private int firstLogin;
+    
+    @OneToOne
+    private List<ExamPaper> examsCompleted;
+
+    public List<ExamPaper> getExamsCompleted() {
+        return examsCompleted;
+    }
+
+    public void setExamsCompleted(List<ExamPaper> examsCompleted) {
+        this.examsCompleted = examsCompleted;
+    }
+    
+    
+
+    public int getFirstLogin() {
+        return firstLogin;
+    }
+
+    public void setFirstLogin(int firstLogin) {
+        this.firstLogin = firstLogin;
+    }
 
     public List<Modules> getModulesEnrolled() {
         return modulesEnrolled;

@@ -19,7 +19,7 @@ public class Lecturer extends User{
 
     @OneToMany
     private List<Modules> selectedModules;
-    
+    private int firstLogin;
 
    /* public List<String> getSelectedModules() {
         
@@ -31,6 +31,14 @@ public class Lecturer extends User{
     }
 
     */
+
+    public int getFirstLogin() {
+        return firstLogin;
+    }
+
+    public void setFirstLogin(int firstLogin) {
+        this.firstLogin = firstLogin;
+    }
     
 
     /*public List<Modules> getModulesList() {

@@ -11,7 +11,7 @@
 
     </h:head>
     <h:body>
-        <ui:composition template="/WEB-INF/templates/newTemplate.xhtml">
+        <ui:composition template="/WEB-INF/templates/Template.xhtml">
 
             <ui:define name="left">
                 User Info Not available
@@ -57,12 +57,12 @@
                                             
                                             <p:panelGrid columns="2">
                                                 <p:outputLabel value="Enter marks for section"/>
-                                                <p:inputText value="#{createExamPaperView.marksForA}"/>
+                                                <p:inputText value="#{createExamPaperView.marksForA}" binding="#{marksA}"/>
                                                 <p:outputLabel value="Select Subject tags"/>
                                                 <h:selectManyListbox value="#{createExamPaperView.seletedSubjectTag}">
                                                     <f:selectItems value="#{createExamPaperView.subjectTags}" var="subjectTags" itemLabel="#{subjectTags.subjectTagname}" itemValue="#{subjectTags.subjectTagId}"/>
                                                 </h:selectManyListbox>
-                                                <p:commandButton value="Generate Questions for Section A" action="#{createExamPaperView.generateAutomaticQuestion('A')}" update="@form">
+                                                <p:commandButton value="Generate Questions for Section A" action="#{createExamPaperView.generateAutomaticQuestion('A', marksA.value)}" update="@form">
                                                 </p:commandButton>
                                             </p:panelGrid>
 
@@ -119,6 +119,20 @@
                                             </p:commandButton>
                                             <p:commandButton value="Delete selected question" actionListener="#{createExamPaperView.deleteQuestionSectionB()}" update="@form">
                                             </p:commandButton>
+                                            
+                                            
+                                            <p:panelGrid columns="2">
+                                                <p:outputLabel value="Enter marks for section"/>
+                                                <p:inputText value="#{createExamPaperView.marksForB}" binding="#{marksB}"/>
+                                                <p:outputLabel value="Select Subject tags"/>
+                                                <h:selectManyListbox value="#{createExamPaperView.seletedSubjectTag}">
+                                                    <f:selectItems value="#{createExamPaperView.subjectTags}" var="subjectTags" itemLabel="#{subjectTags.subjectTagname}" itemValue="#{subjectTags.subjectTagId}"/>
+                                                </h:selectManyListbox>
+                                                <p:commandButton value="Generate Questions for Section B" action="#{createExamPaperView.generateAutomaticQuestion('B', marksB.value)}" update="@form">
+                                                </p:commandButton>
+                                            </p:panelGrid>
+                                            
+                                            
                                             <p:dataTable paginator="true" rows="5" value="#{createExamPaperView.sectionBQuestion}" var="question" id="sectionBdatatable"> 
                                                 <f:facet name="header">
                                                     List of Selected Questions
@@ -171,6 +185,20 @@
                                             </p:commandButton>
                                             <p:commandButton value="Delete selected question" actionListener="#{createExamPaperView.deleteQuestionSectionC()}" update="@form">
                                             </p:commandButton>
+                                            
+                                            
+                                            <p:panelGrid columns="2">
+                                                <p:outputLabel value="Enter marks for section"/>
+                                                <p:inputText value="#{createExamPaperView.marksForC}" binding="#{marksC}"/>
+                                                <p:outputLabel value="Select Subject tags"/>
+                                                <h:selectManyListbox value="#{createExamPaperView.seletedSubjectTag}">
+                                                    <f:selectItems value="#{createExamPaperView.subjectTags}" var="subjectTags" itemLabel="#{subjectTags.subjectTagname}" itemValue="#{subjectTags.subjectTagId}"/>
+                                                </h:selectManyListbox>
+                                                <p:commandButton value="Generate Questions for Section C" action="#{createExamPaperView.generateAutomaticQuestion('C', marksC.value)}" update="@form">
+                                                </p:commandButton>
+                                            </p:panelGrid>
+                                            
+                                            
                                             <p:dataTable paginator="true" rows="5" value="#{createExamPaperView.sectionCQuestion}" var="question" id="sectionCdatatable"> 
                                                 <f:facet name="header">
                                                     List of Selected Questions
@@ -223,6 +251,19 @@
                                             </p:commandButton>
                                             <p:commandButton value="Delete selected question" actionListener="#{createExamPaperView.deleteQuestionSectionD()}" update="@form">
                                             </p:commandButton>
+                                            
+                                            
+                                            <p:panelGrid columns="2">
+                                                <p:outputLabel value="Enter marks for section"/>
+                                                <p:inputText value="#{createExamPaperView.marksForD}" binding="#{marksD}"/>
+                                                <p:outputLabel value="Select Subject tags"/>
+                                                <h:selectManyListbox value="#{createExamPaperView.seletedSubjectTag}">
+                                                    <f:selectItems value="#{createExamPaperView.subjectTags}" var="subjectTags" itemLabel="#{subjectTags.subjectTagname}" itemValue="#{subjectTags.subjectTagId}"/>
+                                                </h:selectManyListbox>
+                                                <p:commandButton value="Generate Questions for Section D" action="#{createExamPaperView.generateAutomaticQuestion('D', marksD.value)}" update="@form">
+                                                </p:commandButton>
+                                            </p:panelGrid>
+                                            
                                             <p:dataTable paginator="true" rows="5" value="#{createExamPaperView.sectionDQuestion}" var="question" id="sectionDdatatable"> 
                                                 <f:facet name="header">
                                                     List of Selected Questions

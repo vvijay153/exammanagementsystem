@@ -69,7 +69,7 @@ public class UserSessionBean implements Serializable {
             System.out.println(">>>in student");
         }else if(FacesContext.getCurrentInstance().getExternalContext().isUserInRole("lecturer")){
             System.out.println(">>>in lecturer");
-            return "/faces/lecturer/protected.xhtml?faces-redirect=true";
+            return "/faces/lecturer/LectureMainPage.xhtml?faces-redirect=true";
         }
         
 
